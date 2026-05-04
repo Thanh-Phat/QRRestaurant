@@ -27,6 +27,9 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<ITableService, TableService>();
+
+
 // CORS 
 builder.Services.AddCors(options =>
 {
