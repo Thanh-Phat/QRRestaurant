@@ -165,7 +165,7 @@ GO
 
 -- =============================
 -- CHAT INTENTS
--- =============================
+-- =============================		P
 CREATE TABLE ChatIntents (
 	Id INT PRIMARY KEY IDENTITY,
 	Keyword NVARCHAR(100),

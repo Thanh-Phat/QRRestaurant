@@ -4,8 +4,8 @@ GO
 USE QRRestaurantDB;
 GO
 
-:r schema.sql
+:r D:\Project\QRRestaurant\database\schema.sql
 GO
 
-:r seed.sql
+:r D:\Project\QRRestaurant\database\seed.sql
 GO

@@ -1,29 +1,58 @@
+﻿using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
+using QRRestaurant_backend.Data;
+using System.Runtime.CompilerServices;
 
-using DotNetEnv;
-
-var builder = WebApplication.CreateBuilder(args);
-// load file .env
+// Load .env 
 Env.Load();
 
+var builder = WebApplication.CreateBuilder(args);
+
+// Lấy connection string từ .env
 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
-// Add services to the container.
+
+// fallback nếu không có 
+connectionString ??= builder.Configuration.GetConnectionString("DefaultConnection");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("Connection string not found.");
+}
+
+// Add DbContext
+// Fix for CS1955 and CS1026: 
+// - UseSqlService should be UseSqlServer (assuming SQL Server is intended, based on EF Core conventions)
+// - builder.Configuration is a property, not a method. Pass connectionString directly.
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+// CORS 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy => policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// bật CORS
+app.UseCors("AllowAll");
 
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();

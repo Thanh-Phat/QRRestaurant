@@ -1,13 +1,5 @@
--- =============================
--- INDEXES (PERFORMANCE)
--- =============================
-CREATE INDEX IX_Orders_TableId ON Orders(TableId);
-CREATE INDEX IX_OrderItems_OrderId ON OrderItems(OrderId);
-CREATE INDEX IX_OrderItems_ProductId ON OrderItems(ProductId);
-CREATE INDEX IX_ChatMessages_SessionId ON ChatMessages(SessionId);
-GO
 
--- =============================
+- =============================
 -- SEED DATA (TEST)
 -- =============================
 INSERT INTO Tables (Name) VALUES ('Table 1'), ('Table 2'), ('Table 3');
