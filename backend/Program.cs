@@ -1,5 +1,6 @@
 ﻿using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using QRRestaurant_backend.Data;
 using QRRestaurant_backend.Services.Implement;
 using QRRestaurant_backend.Services.Implementations;
@@ -32,6 +33,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<ITableService, TableService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
 
 // CORS 
 builder.Services.AddCors(options =>
