@@ -113,14 +113,14 @@ DB_CONNECTION=Server=.;Database=QRRestaurantDB;Trusted_Connection=True;TrustServ
 ### 3. Run database
 
 * Open SQL Server
-* Run file: `/database/database.sql`
+* Run file: `/database/Init.sql`
 
 ---
 
 ### 4. Run backend
 
 ```bash
-cd backend/QRRestaurant.API
+cd QRRestaurant/backend
 dotnet run
 ```
 
@@ -138,6 +138,13 @@ https://localhost:xxxx
 * Or use Live Server (VS Code)
 
 ---
+
+## Dependencies
+
+- .NET 8 SDK
+- SQL Server
+- Entity Framework Core 8
+- DotNetEnv
 
 ##  Database Overview
 
