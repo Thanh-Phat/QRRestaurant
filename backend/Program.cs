@@ -1,6 +1,10 @@
 ﻿using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using QRRestaurant_backend.Data;
+using QRRestaurant_backend.Services.Implement;
+using QRRestaurant_backend.Services.Implementations;
+using QRRestaurant_backend.Services.Interfaces;
 using System.Runtime.CompilerServices;
 
 // Load .env 
@@ -9,7 +13,7 @@ Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 // Lấy connection string từ .env
-var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
+var connectionString = Environment.GetEnvironmentVariable("DB_ConnectionString");
 
 // fallback nếu không có 
 connectionString ??= builder.Configuration.GetConnectionString("DefaultConnection");
@@ -28,6 +32,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<ITableService, TableService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 
 // CORS 

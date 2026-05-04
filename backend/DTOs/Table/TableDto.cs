@@ -1,10 +1,12 @@
-﻿namespace QRRestaurant_backend.Entities
+﻿using System.Runtime.CompilerServices;
+
+namespace QRRestaurant_backend.DTOS.Table
 {
-    public class Table
+    public class TableDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
-        public DateTime CreateAt { get; set; }
+
     }
 }
