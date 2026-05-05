@@ -39,7 +39,7 @@ namespace QRRestaurant_backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(TableCreateDto dto)
         {
-            var result = await _service.CreateAsync(dto);
+            var result = await _service.CreateTableAsync(dto);
             return Ok(result);
         }
 
