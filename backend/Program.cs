@@ -34,7 +34,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<ITableService, TableService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
-
+builder.Services.AddScoped<IKitchenService, KitchenService>();
 
 // CORS 
 builder.Services.AddCors(options =>
