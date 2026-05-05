@@ -6,7 +6,7 @@
         public int TableId { get; set; }
         public int UserId { get; set; }
         public string Status { get; set; }
-        public decimal TotalPrice { get; set; }
+        public decimal TotalAmount { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public Table Table { get; set; }

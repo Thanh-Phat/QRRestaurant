@@ -8,5 +8,8 @@ namespace QRRestaurant_backend.Services.Interfaces
         Task<ProductDto?> GetByIdAsync(int id);
         Task<List<ProductDto>> GetByCategoryAsync(int categoryId);
         Task<List<ProductDto>> SearchAsync(string keyword);
+        Task<ProductDto> CreateAsync(CreateProductDto dto); 
+        Task<bool> UpdateAsync(int id, ProductUpdateDto dto);
+        Task<bool> DeleteAsync(int id);
     }
 }

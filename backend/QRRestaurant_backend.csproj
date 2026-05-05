@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="DTOs\Order\OrderResponse.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />

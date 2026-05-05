@@ -30,9 +30,10 @@ if (string.IsNullOrEmpty(connectionString))
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
-
+// Add services
 builder.Services.AddScoped<ITableService, TableService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 
 // CORS 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QRRestaurant_backend.DTOs.Product;
 using QRRestaurant_backend.Entities;
 using QRRestaurant_backend.Services.Interfaces;
 
@@ -39,15 +40,41 @@ namespace QRRestaurant_backend.Controllers
         [HttpGet("category/{categoryId}")]
         public async Task<IActionResult> GetByCategoryId(int categoryId)
         {
-            var data = await _service.getByCategoryAsync(categoryId);
+            var data = await _service.GetByCategoryAsync(categoryId);
             return Ok(data);
         }
 
+        //Get: api/products/searchCategory
         [HttpGet("search")]
-        public async Task<IActionResult> Search(string keyword)
+        public async Task<IActionResult> SearchCategory(string keyword)
         {
             var data = await _service.SearchAsync(keyword);
-                return Ok(data);
+            return Ok(data);
+        }
+
+        //POST: api/products/searchCategory
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory(CreateProductDto dto)
+        {
+            var data = await _service.CreateAsync(dto);
+            return Ok(data);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, ProductUpdateDto dto)
+        {
+            var success = await _service.UpdateAsync(id, dto);
+            if (!success)
+                return NotFound();
+            return Ok("updated");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategory(int Id)
+        {
+            var ok = await _service.DeleteAsync(Id);
+            if (!ok) return NotFound();
+            return Ok("Delete");
         }
     } 
+
 }

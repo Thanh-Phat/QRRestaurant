@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
 using QRRestaurant_backend.DTOs.QR;
+using QRRestaurant_backend.DTOs.Table;
 using QRRestaurant_backend.Services.Interfaces;
 
 namespace QRRestaurant_backend.Controllers
@@ -33,6 +34,33 @@ namespace QRRestaurant_backend.Controllers
             if (data == null)
                 return NotFound();
             return Ok(data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(TableCreateDto dto)
+        {
+            var result = await _service.CreateAsync(dto);
+            return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, TableUpdateDto dto)
+        {
+            var ok = await _service.UpdateAsync(id, dto);
+            if (!ok) return NotFound();
+
+            return Ok("Updated");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var ok = await _service.DeleteAsync(id);
+
+            if (!ok)
+                return BadRequest("Table is being used or not found");
+
+            return Ok("Deleted");
         }
 
         //Get: api/tables/{id}/qr

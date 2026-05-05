@@ -7,6 +7,6 @@ namespace QRRestaurant_backend.DTOS.Table
         public int Id { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
-
+        public string QrUrl { get; set; }
     }
 }
